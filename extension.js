@@ -2,7 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const getRandomName = require('./resources/name');
-const getRandoemContent = require('./resources/content')
+const getRandomContent = require('./resources/content');
+const getRandomImage = require('./resources/image');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -31,13 +32,23 @@ function activate(context) {
     vscode.window.activeTextEditor.edit(editBuilder => {
       var selections = vscode.window.activeTextEditor.selections
       selections.forEach(selection => {
-        editBuilder.insert(new vscode.Position(selection.start.line, selection.start.character), getRandoemContent());
+        editBuilder.insert(new vscode.Position(selection.start.line, selection.start.character), getRandomContent());
+      })
+    })
+  });
+
+  let image = vscode.commands.registerCommand('random-something.image', function () {
+    vscode.window.activeTextEditor.edit(editBuilder => {
+      var selections = vscode.window.activeTextEditor.selections
+      selections.forEach(selection => {
+        editBuilder.insert(new vscode.Position(selection.start.line, selection.start.character), getRandomImage());
       })
     })
   });
   
 	context.subscriptions.push(name);
 	context.subscriptions.push(content);
+	context.subscriptions.push(image);
 }
 exports.activate = activate;
 
