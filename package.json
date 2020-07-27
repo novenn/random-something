@@ -2,7 +2,7 @@
 	"name": "random-something",
 	"displayName": "Random Something",
 	"description": "随机生成一些内容，包括姓名，文字，身份证，图片，头像，手机号，邮箱等，方便开发者在布局的时候写页面。",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "novenn",
   "repository": "https://github.com/novenn/random-something.git",
 	"engines": {
@@ -14,20 +14,46 @@
 	"activationEvents": [
         "onCommand:random-something.name",
         "onCommand:random-something.content",
-        "onCommand:random-something.image"
+        "onCommand:random-something.image",
+        "onCommand:random-something.avatar",
+        "onCommand:random-something.email",
+        "onCommand:random-something.tel",
+        "onCommand:random-something.address",
+        "onCommand:random-something.school",
+        "onCommand:random-something.www"
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-      "command": "random-something.name",
-      "title": "Random: 姓名"
-		}, {
-      "command": "random-something.content",
-      "title": "Random: 内容"
-		}, {
-      "command": "random-something.image",
-      "title": "Random: 图片"
-		}]
+		"commands": [
+			{
+				"command": "random-something.name",
+				"title": "Random: 人名"
+			}, {
+				"command": "random-something.content",
+				"title": "Random: 内容"
+			}, {
+				"command": "random-something.image",
+				"title": "Random: 图片"
+			}, {
+				"command": "random-something.avatar",
+				"title": "Random: 头像"
+			}, {
+				"command": "random-something.email",
+				"title": "Random: 邮箱"
+			}, {
+				"command": "random-something.tel",
+				"title": "Random: 电话"
+			}, {
+				"command": "random-something.address",
+				"title": "Random: 地址"
+			}, {
+				"command": "random-something.school",
+				"title": "Random: 学校"
+			}, {
+				"command": "random-something.www",
+				"title": "Random: 网址"
+			}
+		]
 	},
 	"scripts": {
 		"lint": "eslint .",
