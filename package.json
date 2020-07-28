@@ -2,9 +2,10 @@
 	"name": "random-something",
 	"displayName": "Random Something",
 	"description": "随机生成一些内容，包括姓名，文字，身份证，图片，头像，手机号，邮箱等，方便开发者在布局的时候写页面。",
-  "version": "0.0.3",
-  "publisher": "novenn",
-  "repository": "https://github.com/novenn/random-something.git",
+	"version": "0.0.5",
+	"publisher": "novenn",
+	"repository": "https://github.com/novenn/random-something.git",
+	"icon": "images/icon.png",
 	"engines": {
 		"vscode": "^1.47.0"
 	},
@@ -14,13 +15,15 @@
 	"activationEvents": [
         "onCommand:random-something.name",
         "onCommand:random-something.content",
+        "onCommand:random-something.saying",
         "onCommand:random-something.image",
         "onCommand:random-something.avatar",
         "onCommand:random-something.email",
         "onCommand:random-something.tel",
         "onCommand:random-something.address",
         "onCommand:random-something.school",
-        "onCommand:random-something.www"
+		"onCommand:random-something.www",
+		"onCommand:random-something.funny"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -28,6 +31,12 @@
 			{
 				"command": "random-something.name",
 				"title": "Random: 人名"
+			}, {
+				"command": "random-something.saying",
+				"title": "Random: 名言"
+			}, {
+				"command": "random-something.funny",
+				"title": "Random: 段子"
 			}, {
 				"command": "random-something.content",
 				"title": "Random: 内容"

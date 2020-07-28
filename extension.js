@@ -2,7 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const getRandomName = require('./resources/name');
-const getRandomContent = require('./resources/content');
+const getRandomSaying= require('./resources/saying');
+const getRandomContent= require('./resources/content');
 const getRandomImage = require('./resources/image');
 const getRandomAvatar = require('./resources/avatar');
 const getRandomEmail = require('./resources/email');
@@ -10,6 +11,7 @@ const getRandomTel = require('./resources/tel');
 const getRandomAddress = require('./resources/address');
 const getRandomSchool = require('./resources/school');
 const getRandomWWW = require('./resources/www');
+const getRandomFunny = require('./resources/funny');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -28,6 +30,7 @@ function activate(context) {
   
   const mapper = {
     'name': getRandomName,
+    'saying': getRandomSaying,
     'content': getRandomContent,
     'image': getRandomImage,
     'avatar': getRandomAvatar,
@@ -35,7 +38,8 @@ function activate(context) {
     'www': getRandomWWW,
     'tel': getRandomTel,
     'school': getRandomSchool,
-    'address': getRandomAddress
+    'address': getRandomAddress,
+    'funny': getRandomFunny,
   }
 
   Object.entries(mapper).forEach(p => {
