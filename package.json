@@ -1,8 +1,8 @@
 {
 	"name": "random-something",
 	"displayName": "Random Something",
-	"description": "随机生成一些内容，包括姓名，文字，身份证，图片，头像，手机号，邮箱等，方便开发者在布局的时候写页面。",
-	"version": "0.0.5",
+	"description": "中国特色的随机内容生成工具，包括人名，名言，内容，段子，图片，头像，电话，邮箱，地址，学校，网址，新闻等，方便开发者在布局的时候写页面。主要特点是图片和头像可以正常加载图片，运气好的话，还能抽到漂亮小姐姐的图片；段子搞笑好玩，给枯燥的工作加一点乐趣；收录了几乎所有的国内高校，幸运的话，可能下一个出来的就是你的学校。",
+	"version": "0.0.7",
 	"publisher": "novenn",
 	"repository": "https://github.com/novenn/random-something.git",
 	"icon": "images/icon.png",
@@ -13,17 +13,18 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:random-something.name",
-        "onCommand:random-something.content",
-        "onCommand:random-something.saying",
-        "onCommand:random-something.image",
-        "onCommand:random-something.avatar",
-        "onCommand:random-something.email",
-        "onCommand:random-something.tel",
-        "onCommand:random-something.address",
-        "onCommand:random-something.school",
+		"onCommand:random-something.name",
+		"onCommand:random-something.content",
+		"onCommand:random-something.saying",
+		"onCommand:random-something.image",
+		"onCommand:random-something.avatar",
+		"onCommand:random-something.email",
+		"onCommand:random-something.tel",
+		"onCommand:random-something.address",
+		"onCommand:random-something.school",
 		"onCommand:random-something.www",
-		"onCommand:random-something.funny"
+		"onCommand:random-something.funny",
+		"onCommand:random-something.news"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -31,36 +32,50 @@
 			{
 				"command": "random-something.name",
 				"title": "Random: 人名"
-			}, {
+			},
+			{
 				"command": "random-something.saying",
 				"title": "Random: 名言"
-			}, {
+			},
+			{
 				"command": "random-something.funny",
 				"title": "Random: 段子"
-			}, {
+			},
+			{
 				"command": "random-something.content",
 				"title": "Random: 内容"
-			}, {
+			},
+			{
 				"command": "random-something.image",
 				"title": "Random: 图片"
-			}, {
+			},
+			{
 				"command": "random-something.avatar",
 				"title": "Random: 头像"
-			}, {
+			},
+			{
 				"command": "random-something.email",
 				"title": "Random: 邮箱"
-			}, {
+			},
+			{
 				"command": "random-something.tel",
 				"title": "Random: 电话"
-			}, {
+			},
+			{
 				"command": "random-something.address",
 				"title": "Random: 地址"
-			}, {
+			},
+			{
 				"command": "random-something.school",
 				"title": "Random: 学校"
-			}, {
+			},
+			{
 				"command": "random-something.www",
 				"title": "Random: 网址"
+			},
+			{
+				"command": "random-something.news",
+				"title": "Random: 新闻"
 			}
 		]
 	},
@@ -70,15 +85,18 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-        "@types/vscode": "^1.47.0",
-        "@types/glob": "^7.1.1",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^13.11.0",
-        "eslint": "^6.8.0",
-        "glob": "^7.1.6",
-		    "mocha": "^7.1.2",
-        "typescript": "^3.8.3",
-        "vscode-test": "^1.3.0"
-    }
-
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.47.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"request": "^2.88.2",
+		"vscode-cache": "^0.3.0"
+	}
 }
