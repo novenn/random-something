@@ -55,37 +55,58 @@ function activate(context) {
     context.subscriptions.push(command);
   })
 
-  let news = vscode.commands.registerCommand('random-something.news', async function() {
-    const res = await getRandomNews()
+  let news = vscode.commands.registerCommand('random-something.news', function() {
+    let html = `<!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                      <meta charset="UTF-8">
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <title>每日新闻</title>
+                  </head>
+                  <body>
+                    <div style="width: 800px; margin:auto">
+                      {{body}}
+                    </div>
+                  </body>
+                  </html>
+                `
     const panel = vscode.window.createWebviewPanel(
       'news', // Identifies the type of the webview. Used internally
       '每日新闻', // Title of the panel displayed to the user
       vscode.ViewColumn.One, // Editor column to show the new webview panel in.
       {} // Webview options. More on these later.
     );
-    
-    let news = '';
-    res.forEach(element => {
-      news += `<a href="${element.link}">${element.title}</a><br /><br />`
-    });
-
-    let html = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>每日新闻</title>
-    </head>
-    <body>
-      <div style="width: 500px; margin:auto">
-        <h3>每日新闻</h3>
-        <div>${news}</div>
-      </div>
-    </body>
-    </html>`
-    panel.webview.html = html
+    panel.webview.html = html.replace('{{body}}', '正在加载...')
+    getRandomNews().then(res => {
+      let newshtml = ''
+      res.news.forEach(element => {
+        newshtml += `<h3 style="color: orange">${element.title}</h3>`
+        element.blocks && element.blocks.forEach(block => {
+          if(!block) {
+            return
+          }
+          if(block.type === 'text') {
+            newshtml += `<p>${block.content}</p>`
+          } else  if(block.type === 'image') {
+            newshtml += `<p><img src="${block.content}" width="100%"/></p>`
+          }
+        })
+      });
+      
+      panel.webview.html = html.replace('{{body}}', 
+        `
+          <h3>每日新闻</h2>
+          <div>来源<a href="${res.newspath}">极客公园</a></div>
+          <div>${newshtml}</div>
+        `
+      )
+    }).catch (error => {
+      panel.webview.html = html.replace('{{body}}', '正在失败 :(')
+    })
    
   })
+
+  context.subscriptions.push(news);
 }
 exports.activate = activate;
 
