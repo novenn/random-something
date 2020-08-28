@@ -2236,7 +2236,12 @@ const sufixes = [
 
 ]
 
-module.exports = function getRandomEmail() {
+module.exports = function getRandomEmail(config) {
+  if(config && config.length) {
+    const _emails = config
+    var index = Math.floor(_emails.length * Math.random())
+    return _emails[index]
+  }
     var index = Math.floor(sufixes.length * Math.random())
     return randomString(Math.floor(30 * Math.random() + 2)) + '@' + sufixes[index]
 }

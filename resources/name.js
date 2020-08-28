@@ -521,7 +521,8 @@ const names = [
   
 ]
 
-module.exports = function getRandomName() {
-  var index = Math.floor(names.length * Math.random())
-  return names[index]
+module.exports = function getRandomName(config) {
+  const _names = config && config.length ? config : names
+  var index = Math.floor(_names.length * Math.random())
+  return _names[index]
 }

@@ -1,10 +1,12 @@
-# Change Log
 
-All notable changes to the "random-something" extension will be documented in this file.
+## [0.0.11] - 2020-08-28
+- 支持配置自定义数据
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.10] - 2020-08-28
+- random:内容: 支持指定字数
 
-
+## [0.0.9] - 2020-08-07
+- 新增支持视频，音频
 
 ## [0.0.8] - 2020-07-29
 - 修改每日新闻来源为【极客公园】，支持图文内容

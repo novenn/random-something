@@ -946,7 +946,12 @@ const tels = [
     '0908-4223388',
 ]
 
-module.exports = function getRandomTel() {
+module.exports = function getRandomTel(config) {
+  if(config && config.length) {
+    const _tels = config
+    var index = Math.floor(_tels.length * Math.random())
+    return _tels[index]
+  }
     var index = Math.floor(tels.length * Math.random())
     return tels[index]
 }

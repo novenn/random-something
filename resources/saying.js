@@ -262,9 +262,17 @@ const contents = [
   '只有玫瑰才能理解另一朵玫瑰，只有漫天风雪才能理解冬天。', 
   '须交有道之人，莫结无义之友。饮清静之茶，莫贪花色之酒。开方便之门，闲是非之口。', 
   '我们应该尊重的是一个人的年龄还是他的行为？这句话说的真好',
+  '觉得插件好用的话，点个赞吧',
+  '觉得插件好用的话，转发一下吧',
+  '你的传播是我们前进的动力'
 ]
 
-module.exports = function getRandomContent() {
+module.exports = function getRandomContent(config) {
+  if(config && config.length) {
+    const _sayings = config
+    var index = Math.floor(_sayings.length * Math.random())
+    return _sayings[index]
+  }
   var index = Math.floor(contents.length * Math.random())
   return contents[index]
 }

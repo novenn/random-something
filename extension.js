@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const utils = require('./utils')
 const getRandomName = require('./resources/name');
 const getRandomSaying= require('./resources/saying');
 const getRandomContent= require('./resources/content');
@@ -13,6 +14,9 @@ const getRandomSchool = require('./resources/school');
 const getRandomWWW = require('./resources/www');
 const getRandomFunny = require('./resources/funny');
 const getRandomNews = require('./resources/news');
+const getRandomVideo = require('./resources/video')
+const getRandomAudio = require('./resources/audio');
+const console = require('console');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -41,16 +45,31 @@ function activate(context) {
     'school': getRandomSchool,
     'address': getRandomAddress,
     'funny': getRandomFunny,
+    'video': getRandomVideo,
+    'audio': getRandomAudio,
   }
 
+  const inputRules = {
+    'video': {
+      placeHolder: '输入格式（mp4、flv、m3u8）'
+    },
+    'content': {
+      placeHolder: '需要多少字'
+    }
+  }
+
+  let configuration = vscode.workspace.getConfiguration('randomSomething')
   Object.entries(mapper).forEach(p => {
     let command = vscode.commands.registerCommand('random-something.'+p[0], function () {
-      vscode.window.activeTextEditor.edit(editBuilder => {
-        var selections = vscode.window.activeTextEditor.selections
-        selections.forEach(selection => {
-          editBuilder.insert(new vscode.Position(selection.start.line, selection.start.character), p[1]());
+      var inputRule = inputRules[p[0]]
+      let config = configuration.get(p[0])
+      if(inputRule && (!config || !config.length)) {
+        vscode.window.showInputBox(inputRule).then(function(inputMsg) {
+          utils.insert(vscode, p[1].bind(null, inputMsg, config))
         })
-      })
+      } else {
+        utils.insert(vscode, p[1].bind(null, config))
+      }
     });
     context.subscriptions.push(command);
   })

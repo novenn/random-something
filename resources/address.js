@@ -1734,7 +1734,8 @@ const addresses = [
     '新疆乌鲁木齐市经济技术开发区（头屯河区）头屯河公路555号',
 ]
 
-module.exports = function getRandomAddress() {
-    var index = Math.floor(addresses.length * Math.random())
-    return addresses[index]
+module.exports = function getRandomAddress(config) {
+  const _addresses = config && config.length ? config : addresses
+  var index = Math.floor(_addresses.length * Math.random())
+  return _addresses[index]
 }
