@@ -4,7 +4,7 @@ const vscode = require('vscode');
 const utils = require('./utils')
 const getRandomName = require('./resources/name');
 const getRandomSaying= require('./resources/saying');
-const getRandomContent= require('./resources/content');
+// const getRandomContent= require('./resources/content');
 const getRandomImage = require('./resources/image');
 const getRandomAvatar = require('./resources/avatar');
 const getRandomEmail = require('./resources/email');
@@ -20,6 +20,7 @@ const console = require('console');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
+
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -33,21 +34,39 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
   
-  const mapper = {
-    'name': getRandomName,
-    'saying': getRandomSaying,
-    'content': getRandomContent,
-    'image': getRandomImage,
-    'avatar': getRandomAvatar,
-    'email': getRandomEmail,
-    'www': getRandomWWW,
-    'tel': getRandomTel,
-    'school': getRandomSchool,
-    'address': getRandomAddress,
-    'funny': getRandomFunny,
-    'video': getRandomVideo,
-    'audio': getRandomAudio,
-  }
+  // const mapper = {
+  //   'name': getRandomName,
+  //   'saying': getRandomSaying,
+  //   'content': getRandomContent,
+  //   'image': getRandomImage,
+  //   'avatar': getRandomAvatar,
+  //   'email': getRandomEmail,
+  //   'www': getRandomWWW,
+  //   'tel': getRandomTel,
+  //   'school': getRandomSchool,
+  //   'address': getRandomAddress,
+  //   'funny': getRandomFunny,
+  //   'video': getRandomVideo,
+  //   'audio': getRandomAudio,
+  // }
+
+  const commands = ['name', 'saying', 'content', 'image', 'avatar','email', 'www', 'tel', 'school', 'address', 'funny', 'video', 'audio']
+
+  // const mapper = {
+  //   'name': "./resources/name",
+  //   'saying': getRandomSaying,
+  //   'content': getRandomContent,
+  //   'image': getRandomImage,
+  //   'avatar': getRandomAvatar,
+  //   'email': getRandomEmail,
+  //   'www': getRandomWWW,
+  //   'tel': getRandomTel,
+  //   'school': getRandomSchool,
+  //   'address': getRandomAddress,
+  //   'funny': getRandomFunny,
+  //   'video': getRandomVideo,
+  //   'audio': getRandomAudio,
+  // }
 
   const inputRules = {
     'video': {
@@ -59,16 +78,19 @@ function activate(context) {
   }
 
   let configuration = vscode.workspace.getConfiguration('randomSomething')
-  Object.entries(mapper).forEach(p => {
-    let command = vscode.commands.registerCommand('random-something.'+p[0], function () {
-      var inputRule = inputRules[p[0]]
-      let config = configuration.get(p[0])
+  commands.forEach(commandName => {
+    let command = vscode.commands.registerCommand('random-something.'+commandName, function () {
+      var inputRule = inputRules[commandName]
+      let config = configuration.get(commandName)
+
+      const handler = (...args) => require(`./resources/${commandName}`)(...args)
+
       if(inputRule && (!config || !config.length)) {
         vscode.window.showInputBox(inputRule).then(function(inputMsg) {
-          utils.insert(vscode, p[1].bind(null, inputMsg, config))
+          utils.insert(vscode, handler.bind(null, inputMsg, config))
         })
       } else {
-        utils.insert(vscode, p[1].bind(null, config))
+        utils.insert(vscode, handler.bind(null, config))
       }
     });
     context.subscriptions.push(command);
@@ -127,7 +149,8 @@ function activate(context) {
 
   context.subscriptions.push(news);
 }
-exports.activate = activate;
+
+// exports.activate = activate;
 
 // this method is called when your extension is deactivated
 function deactivate() {}
