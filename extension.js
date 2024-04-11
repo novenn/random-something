@@ -10,7 +10,7 @@ const handlers = {}
 function activate(context) {
 
 
-  const commands = ['name', 'saying', 'content', 'image', 'avatar','email', 'www', 'tel', 'school', 'address', 'funny', 'video', 'audio']
+  const commands = ['name', 'saying', 'content', 'image', 'avatar','email', 'www', 'tel', 'mobile' ,'school', 'address', 'funny', 'video', 'audio']
 
 
   const inputRules = {
