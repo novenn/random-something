@@ -11,7 +11,8 @@
 * Random: 段子
 * Random: 图片
 * Random: 头像
-* Random: 电话
+* Random: 座机
+* Random: 手机
 * Random: 邮箱
 * Random: 地址
 * Random: 学校

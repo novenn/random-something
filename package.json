@@ -2,7 +2,7 @@
 	"name": "random-something",
 	"displayName": "Random Something",
 	"description": "中国特色的随机内容生成工具，包括音频，视频，人名，名言，内容，段子，图片，头像，电话，邮箱，地址，学校，网址，新闻等，方便开发者在布局的时候写页面。主要特点是图片和头像可以正常加载图片，运气好的话，还能抽到漂亮小姐姐的图片；段子搞笑好玩，给枯燥的工作加一点乐趣；收录了几乎所有的国内高校，幸运的话，可能下一个出来的就是你的学校。",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publisher": "novenn",
 	"repository": "https://github.com/novenn/random-something.git",
 	"icon": "images/icon.png",
@@ -61,7 +61,11 @@
 			},
 			{
 				"command": "random-something.tel",
-				"title": "Random: 电话"
+				"title": "Random: 座机"
+			},
+			{
+				"command": "random-something.mobile",
+				"title": "Random: 手机"
 			},
 			{
 				"command": "random-something.address",
@@ -78,109 +82,100 @@
 			{
 				"command": "random-something.news",
 				"title": "Random: 新闻"
-      },
-      {
+			},
+			{
 				"command": "random-something.video",
 				"title": "Random: 视频"
-      },
-      {
+			},
+			{
 				"command": "random-something.audio",
 				"title": "Random: 音频"
 			}
-    ],
-    "configuration": {
-      "title": "Random Something",
-      "properties": {
-        "randomSomething.name": {
-          "type": "array",
+		],
+		"configuration": {
+			"title": "Random Something",
+			"properties": {
+				"randomSomething.name": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-          ],
-          "description": "自定义你的姓名数组"
-        },
-        "randomSomething.saying": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的姓名数组"
+				},
+				"randomSomething.saying": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-          ],
-          "description": "自定义你的名言数组"
-        },
-        "randomSomething.image": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的名言数组"
+				},
+				"randomSomething.image": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-					],
-          "description": "自定义你的图片数组"
-        },
-        "randomSomething.avatar": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的图片数组"
+				},
+				"randomSomething.avatar": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-					],
-          "description": "自定义你的头像图片数组"
-        },
-        "randomSomething.email": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的头像图片数组"
+				},
+				"randomSomething.email": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-					],
-          "description": "自定义你的邮箱数组"
-        },
-        "randomSomething.tel": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的邮箱数组"
+				},
+				"randomSomething.tel": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-					],
-          "description": "自定义你的电话数组"
-        },
-        "randomSomething.address": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的电话数组"
+				},
+				"randomSomething.address": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-					],
-          "description": "自定义你的地址数组"
-        },
-        "randomSomething.video": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的地址数组"
+				},
+				"randomSomething.video": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-          ],
-          "description": "自定义你的视频地址数组"
-        },
-        "randomSomething.audio": {
-          "type": "array",
+					"default": [],
+					"description": "自定义你的视频地址数组"
+				},
+				"randomSomething.audio": {
+					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": [
-					],
-          "description": "自定义你的音频地址数组"
-        }
-      }
-    }
+					"default": [],
+					"description": "自定义你的音频地址数组"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "yarn run lint",
-    "test": "node ./test/runTest.js",
-    "package": "vsce package",
-    "publish": "vsce publish"
+		"test": "node ./test/runTest.js",
+		"package": "vsce package",
+		"publish": "vsce publish"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
@@ -196,6 +191,7 @@
 	"dependencies": {
 		"cheerio": "^1.0.0-rc.3",
 		"request": "^2.88.2",
+		"vsce": "^2.15.0",
 		"vscode-cache": "^0.3.0"
 	}
 }
